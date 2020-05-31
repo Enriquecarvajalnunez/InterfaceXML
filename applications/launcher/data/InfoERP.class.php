@@ -7,7 +7,7 @@
 class InfoERP
 {
     var $connection;
-    var $consult;
+    var $consult;    
     
     function __construct()
     {
@@ -17,39 +17,39 @@ class InfoERP
     }
 
     function getAllInfoERP()
-    {
-        $sql = "SELECT  f353_id_sucursal
-                        f1_tercero_suc,
-                        t200_prov.f200_id  
-                        f1_tercero,
-                        t200_prov.f200_razon_social
-                        f1_tercero_razon_social,
-                        nvl(rtrim(f353_prefijo_cruce)|| '-' ,' ')  ||    lpad(nvl(f353_consec_docto_cruce,0),8,'0')  f1_docto_cruce,
-                        f353_fecha_docto_cruce
-                        f1_fecha_cruce, f353_fecha_vcto  f1_fecha_vcto,
-                        sum(f_saldo /1)  f1_saldo_total, sum(f_saldo_alterno /1)  
-                        f1_saldo_total_alt, rtrim(t350.f350_id_co) || '-' ||
-                        rtrim(t350.f350_id_tipo_docto) || '-' ||  lpad(t350.f350_consec_docto,8,'0')
-                            f1_docto_causacion, t350.f350_usuario_aprobacion  f_usuario_aprobacion,
-                        f353_fecha  f1_fecha_docto
-                        from
-                        unoee_fanalca.t353_co_saldo_abierto
-                        inner join unoee_fanalca.tp1_calcular_saldo_sa_corte on f353_rowid = f_rowid_sa
-                        inner join t200_mm_terceros t200_prov on f353_rowid_tercero = t200_prov.f200_rowid
-                        inner join t202_mm_proveedores t202_prov on t202_prov.f202_rowid_tercero = f353_rowid_tercero
-                        and f353_id_sucursal = t202_prov.f202_id_sucursal
-                        inner join t350_co_docto_contable t350 on t350.f350_rowid = f353_rowid_docto
-                        inner join unoee_fanalca.tp1_cons_cxp on f1_rowid_sa = f353_rowid
-                        where not(f_saldo /1 = 0 and f_saldo_alterno /1 = 0)
-                        and not ((f1_dias_vencido) > 0 and not (f1_dias_vencido between 1 and 999999))
-                        group by f353_id_sucursal , t200_prov.f200_id , t200_prov.f200_razon_social, nvl(rtrim(f353_prefijo_cruce)|| '-' ,' ')  ||  
-                        lpad(nvl(f353_consec_docto_cruce,0),8,'0') , f353_fecha_docto_cruce ,
-                        f353_fecha_vcto , rtrim(t350.f350_id_co) || '-' ||
-                        rtrim(t350.f350_id_tipo_docto) || '-' ||  lpad(t350.f350_consec_docto,8,'0')
-                        , t350.f350_usuario_aprobacion , f353_fecha";
+    {                       
+        $sql = "select f353_id_sucursal
+                f1_tercero_suc,
+                t200_prov.f200_id  
+                f1_tercero,
+                t200_prov.f200_razon_social
+                f1_tercero_razon_social,
+                nvl(rtrim(f353_prefijo_cruce)|| '-' ,' ')  ||    lpad(nvl(f353_consec_docto_cruce,0),8,'0')  f1_docto_cruce,
+                f353_fecha_docto_cruce
+                f1_fecha_cruce, f353_fecha_vcto  f1_fecha_vcto,
+                sum(f_saldo /1)  f1_saldo_total, sum(f_saldo_alterno /1)  
+                f1_saldo_total_alt, rtrim(t350.f350_id_co) || '-' ||
+                rtrim(t350.f350_id_tipo_docto) || '-' ||  lpad(t350.f350_consec_docto,8,'0')
+                f1_docto_causacion, t350.f350_usuario_aprobacion  f_usuario_aprobacion,
+                f353_fecha  f1_fecha_docto
+            from
+            unoee_fanalca.t353_co_saldo_abierto
+                inner join unoee_fanalca.tp1_calcular_saldo_sa_corte on f353_rowid = f_rowid_sa
+                inner join t200_mm_terceros t200_prov on f353_rowid_tercero = t200_prov.f200_rowid
+                inner join t202_mm_proveedores t202_prov on t202_prov.f202_rowid_tercero = f353_rowid_tercero
+                and f353_id_sucursal = t202_prov.f202_id_sucursal
+                inner join t350_co_docto_contable t350 on t350.f350_rowid = f353_rowid_docto
+                inner join unoee_fanalca.tp1_cons_cxp on f1_rowid_sa = f353_rowid
+                where not(f_saldo /1 = 0 and f_saldo_alterno /1 = 0)
+                and not ((f1_dias_vencido) > 0 and not (f1_dias_vencido between 1 and 999999))
+                group by f353_id_sucursal , t200_prov.f200_id , t200_prov.f200_razon_social, nvl(rtrim(f353_prefijo_cruce)|| '-' ,' ')  ||  
+                lpad(nvl(f353_consec_docto_cruce,0),8,'0') , f353_fecha_docto_cruce ,
+                f353_fecha_vcto , rtrim(t350.f350_id_co) || '-' ||
+                rtrim(t350.f350_id_tipo_docto) || '-' ||  lpad(t350.f350_consec_docto,8,'0')
+                , t350.f350_usuario_aprobacion , f353_fecha";
 
-        $this->consult = $this->connection->GetAll($sql2);
-        return $this->consult;                        
+        $this->consult = $this->connection->GetAll($sql);                
+        return $this->consult;                                
     }
 
     function insertInforERP_First()
@@ -73,6 +73,7 @@ class InfoERP
                 t202_prov.f202_id_sucursal inner join t277_co_tipo_prov t277 on
                 t277.f277_id = t202_prov.f202_id_tipo_prov and t277.f277_id_cia =
                 t202_prov.f202_id_cia  where f353_fecha_cancelacion is null";
+        print_r('Entre first!');                  
 
         $this->consult = $this->connection->Execute($sql);
         return $this->consult;
@@ -102,7 +103,21 @@ class InfoERP
                 t202_prov.f202_id_sucursal  LEFT JOIN t208_mm_condiciones_pago ON
                 f208_id_cia = t202_prov.f202_id_cia AND f208_id =
                 t202_prov.f202_id_cond_pago";
+        print_r('Entre second!');                 
         $this->consult = $this->connection->Execute($sql);
+        return $this->consult;
+    }
+
+    function Test()
+    {
+        print_r('Entre !');        
+    }
+
+    function UnMedida()
+    {
+        $sql = "SELECT  * from T101_MC_UNIDADES_MEDIDA";
+
+        $this->consult = $this->connection->GetAll($sql);                
         return $this->consult;
     }
 }

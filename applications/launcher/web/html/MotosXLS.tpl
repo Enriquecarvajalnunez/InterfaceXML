@@ -4,4 +4,4 @@
 * Autor : @Enrique Nuñez
 -->
 
-{consult_table_xls table_name="InfoERP" ruta="xmls" file_name="vw_cebes_erp.xml" itemName="importaciones"}
+{consult_table_xls table_name="InfoERP" ruta="xmls" file_name="vw_cebes_erp.xml"}

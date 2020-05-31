@@ -99,8 +99,8 @@ $Application_config = array (
         dirname(__FILE__).'/../.',
         dirname(__FILE__).'/../php/classes',
         dirname(__FILE__).'/../../../lib',
-        dirname(__FILE__).'/../../../lib/smarty-3.1.34/libs',
         dirname(__FILE__).'/../../../lib/DataType',
+        dirname(__FILE__).'/../../../lib/smarty-3.1.34/libs',
         dirname(__FILE__).'/../../../lib/PEAR',
         dirname(__FILE__).'/../../../lib/PEAR/MDB2-2.5.0', 
         dirname(__FILE__).'/../../../lib/PEAR/MDB_MetaData',
@@ -108,6 +108,62 @@ $Application_config = array (
         dirname(__FILE__).'/../../../lib/swiftmailer/lib',    
 		dirname(__FILE__).'/../../../lib/tcpdf', 
         dirname(__FILE__).'/../../../lib/captcha',
+        dirname(__FILE__).'/../../../lib/vendor',
+        dirname(__FILE__).'/../../../lib/vendor/composer',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/complex',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/complex/examples',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/complex/classes',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/complex/classes/src/functions',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/complex/classes/src/operations',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/matrix',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/matrix/classes',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/matrix/classes/src',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/matrix/classes/src/functions',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/matrix/classes/src/operations',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/matrix/classes/src/Operators',
+        dirname(__FILE__).'/../../../lib/vendor/markbaker/examples',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/bin',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/bin/docs',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/bin/docs/assets',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/bin/docs/extra',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/bin/docs/references',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/bin/docstopics',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/bin/docstopics/images',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Autofilter',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Basic',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Basic/data',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Basic/data/continents',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/bootstrap',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/bootstrap/css',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/bootstrap/fonts',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/bootstrap/js',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Calculations',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Calculations/Database',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Calculations/DateTime',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Chart',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/images',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Pdf',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Reader',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Reader/sampleData',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Reading_workbook_data',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/Reading_workbook_data/sampleData',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/samples/templates',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/src',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/ ',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/Color',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/Style',
+        dirname(__FILE__).'/../../../lib/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xlsx',    
+        dirname(__FILE__).'/../../../lib/vendor/psr',
+        dirname(__FILE__).'/../../../lib/vendor/psr/simple-cache',
+        dirname(__FILE__).'/../../../lib/vendor/psr/simple-cache/src',
         ),
 		        
 // directories
@@ -127,16 +183,28 @@ $Application_config = array (
 
 
 // database  type = Mysql,Oracle,Pgsql,adodb
-    'database' => array (
+'database' => array (
+    'default' => array(
         'name' => 'TESTERP',
         'type' => 'adodb',
         'host' => 'TESTERP_NEW',
         'hostport' =>'1521',
         'user' => 'unoee_fanalca',
         'password' => 'erp$2015',
-        'connection' => 'pdo_oci8'  //pdo_mysql,pdo_oci8,pdo_postgres,...
+        'connection' => 'pdo_oci8'  //pdo_mysql,pdo_oci8,pdo_postgres,...        
         ),
-    );
+    'bd2' => array (
+        'name' => 'ERPO',
+        'type' => 'adodb',
+        'host' => 'ERPSCAN',
+        'hostport' =>'2682',
+        'user' => 'runt_fanalca',
+        'password' => 'valera',
+        'connection' => 'pdo_oci8'  //pdo_mysql,pdo_oci8,pdo_postgres,...            
+        )
+    ),            
+               
+);
 
 echo "<pre>";
 print_r($Application_config);
