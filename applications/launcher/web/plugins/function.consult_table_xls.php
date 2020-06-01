@@ -8,9 +8,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 function smarty_function_consult_table_xls($params)
 {
     $spreadsheet = new Spreadsheet();
-    
-
-    //dirname(__FILE__).'/../../../lib'
+        
 
     extract($params);
     
@@ -23,7 +21,7 @@ function smarty_function_consult_table_xls($params)
     //$v = call_user_func(array($gateway,"getAll$table_name"));
     $v = call_user_func(array($gateway,"UnMedida"));
     
-    print_r($v);
+    //print_r($v);
     $html='';
     $arraykeys = array();
 
@@ -31,14 +29,22 @@ function smarty_function_consult_table_xls($params)
     {  
       $arraykeys = array_keys($v[0]);
       //print_r($arraykeys);
-      for ($i=0;$i<count($v);$i++)//iteración para las filas del arreglo
+
+      $Row = 2;
+      for ($i=0;$i<count($v);$i++)//itera filas del arreglo
       {
-        
-          for ($j=0;$j<count($arraykeys);$j++)//iteración para columnas del arreglo
-          {        
-              $html.= .$arraykeys[$j].$v[$i][$arraykeys[$j]];
-              
-          }         
+          $Column = 1;
+          //$Row = 2;
+          print_r($Row);
+          for ($j=0;$j<count($arraykeys);$j++)//itera columnas del arreglo
+          {               
+            $spreadsheet->getActiveSheet()->setCellValueByColumnAndRow($Column,1,$arraykeys[$j]);
+            $spreadsheet->getActiveSheet()->setCellValueByColumnAndRow($Column,$Row,$v[$i][$arraykeys[$j]]);
+
+            $Column++;
+            //$Row++;                                             
+            //$html.= $arraykeys[$j];          
+          }$Row++;                                                      
 
       }
     }   
@@ -48,8 +54,8 @@ function smarty_function_consult_table_xls($params)
 
     }   
     
-    $report_output = 'C:\xampp\htdocs\LoadDataBDXML\applications\launcher\report\generados\Importaciones.xls';
-    file_put_contents($report_output,$html);
+    //$report_output = 'C:\xampp\htdocs\LoadDataBDXML\applications\launcher\report\generados\Importaciones.xls';
+    //file_put_contents($report_output,$html);
     
     $writer = IOFactory::createWriter($spreadsheet, 'Xls');
     $writer->save('salida.xls');
